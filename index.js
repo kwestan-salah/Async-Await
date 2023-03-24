@@ -1,28 +1,39 @@
 let postsdata = "";
 
 async function clickhandler(element) {
-    // console.log(element); agar bes ame bnwsyn awa yhny tenha li'aka le naw console'da printe bke
-    const data = await fetch(
-        "https://jsonplaceholder.typicode.com/posts/" + element.dataset.id
-    );
-    const response = await data.json();
-    console.log(response);
+    try {
+
+        const data = await fetch(
+            "https://jsonplaceholder.typicode.com/posts/" + element.dataset.id
+        );
+        const response = await data.json();
+        console.log(response);
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 
 const fetchalldata = async() => {
-    const data = await fetch('https://jsonplaceholder.typicode.com/posts')
-    const response = await data.json();
+    try {
 
-    response.forEach((post, index) => {
-        if (index >= 10) {
-            return;
-        } else {
-            postsdata += `<li onclick="clickhandler(this)" data-id=${post.id} class='listitem'>${post.title} - ${post.body}-${post.id}</li>`;
-        }
-    });
+        const data = await fetch('https://jsonplaceholder.typicode.com/posts')
+        const response = await data.json();
 
-    document.body.innerHTML = postsdata;
+        response.forEach((post, index) => {
+            if (index >= 10) {
+                return;
+            } else {
+                postsdata += `<li onclick="clickhandler(this)" data-id=${post.id} class='listitem'>${post.title} - ${post.body}-${post.id}</li>`;
+            }
+        });
+
+        document.body.innerHTML = postsdata;
+    } catch (err) {
+        console.log(err);
+    } finally {
+        console.log("finally");
+    }
 
 };
 fetchalldata();
