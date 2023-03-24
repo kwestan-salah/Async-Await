@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.listitem {
+    margin: 10px 5;
+    font-size: 1.2rem;
+    color: #333;
+    list-style: none;
+    width: 23%;
+    border-bottom: 1px #ccc solid;
+}
